@@ -93,6 +93,7 @@ fp_args['noversion'] = False
 @mock.patch('argparse.ArgumentParser.parse_args', return_value=argparse.Namespace(**fp_args))
 def test_tomcat_fingerprint(mock_args):
     responses.add(**MockResponses.tomcat_fp)
+    print(responses.__dict__)
     reset_handlers()
     se = core.main()
     print(("Scanners:",se.scanners.qsize()))
@@ -279,3 +280,4 @@ def test_es_scan_success(mock_args):
     reset_handlers()
     se = core.main()
     assert se.found_q.qsize() == 1
+
